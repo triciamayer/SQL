@@ -63,6 +63,7 @@ VALUES
 SELECT *
 FROM fortune_companies
 
+# Assign all the companies in the Healthcare industry as "superb", "good", "okay", or "minimal" based on the maternity leave offered. 
 
 SELECT COUNT (*),
 CASE WHEN maternity_leave_weeks >=14 THEN "superb"
@@ -72,6 +73,7 @@ ELSE "minimal" END AS maternity_leave_rating
 FROM fortune_companies
 GROUP BY maternity_leave_rating;
 
+# Which companies have an average revenue of at least $350 Billion?
 SELECT company_name, revenue
 FROM fortune_companies
 GROUP BY company_name
@@ -83,6 +85,7 @@ ELSE "no" END AS provides_benefits
 FROM fortune_companies
 GROUP BY company_name;
 
+# Which companies have atleast 5 paid time off days?
 SELECT *, COUNT(*)
 FROM fortune_companies
 GROUP BY paid_time_off_days
@@ -99,6 +102,7 @@ SELECT company_name
 FROM fortune_companies
 WHERE industry = 'Healthcare' AND healthcare_benefits = 1
 
+# Which companies have average employee tenure above 5 years *or* at least 10 weeks of maternity leave?
 SELECT company_name, industry, avg_employee_tenure, maternity_leave_weeks
 FROM fortune_companies
 WHERE avg_employee_tenure >5 OR maternity_leave_weeks >10
