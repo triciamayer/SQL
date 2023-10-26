@@ -116,6 +116,7 @@ FROM fortune_companies
 SELECT company_name, MAX(paid_time_off_days)
 FROM fortune_companies
 
+# Which company has the least maternity leave?
 SELECT company_name, MIN(maternity_leave_weeks)
 FROM fortune_companies
 
