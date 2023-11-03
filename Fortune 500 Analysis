@@ -64,7 +64,6 @@ SELECT *
 FROM fortune_companies
 
 # Assign all the companies in the Healthcare industry as "superb", "good", "okay", or "minimal" based on the maternity leave offered. 
-
 SELECT COUNT (*),
 CASE WHEN maternity_leave_weeks >=14 THEN "superb"
 WHEN maternity_leave_weeks >=10 THEN "good"
@@ -79,6 +78,7 @@ FROM fortune_companies
 GROUP BY company_name
 HAVING revenue > 350;
 
+# Which companies provide healthcare benefits to its employees?
 SELECT company_name, industry, 
 CASE WHEN healthcare_benefits = 1 THEN "yes" 
 ELSE "no" END AS provides_benefits
@@ -92,12 +92,14 @@ GROUP BY paid_time_off_days
 HAVING COUNT(*) >= 5
 ORDER BY paid_time_off_days DESC;
 
+# Which companies have an average tenure greater than five years?
 SELECT company_name, avg_employee_tenure
 FROM fortune_companies
 GROUP BY avg_employee_tenure
 HAVING avg_employee_tenure >5
 ORDER BY avg_employee_tenure DESC;
 
+# Which companies in the healthcare industry provide benefits?
 SELECT company_name
 FROM fortune_companies
 WHERE industry = 'Healthcare' AND healthcare_benefits = 1
@@ -107,12 +109,15 @@ SELECT company_name, industry, avg_employee_tenure, maternity_leave_weeks
 FROM fortune_companies
 WHERE avg_employee_tenure >5 OR maternity_leave_weeks >10
 
+# Calculate the average tenure of all employees.
 SELECT AVG(avg_employee_tenure)
 FROM fortune_companies
 
+# Calculate the average number of employees for all Fortune 500 companies.
 SELECT AVG(employees)
 FROM fortune_companies
 
+# Which company has the highest number of paid time off days?
 SELECT company_name, MAX(paid_time_off_days)
 FROM fortune_companies
 
@@ -120,6 +125,7 @@ FROM fortune_companies
 SELECT company_name, MIN(maternity_leave_weeks)
 FROM fortune_companies
 
+# What is the total revenue for Fortune 500 companies?
 SELECT SUM(revenue)
 FROM fortune_companies
 
